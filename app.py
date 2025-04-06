@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 
 
-todo = Flask('__name__')
+app = Flask('__name__')
 
 students = [
         {
@@ -25,12 +25,12 @@ students = [
     ]
 
 
-@todo.route('/students-list')
+@app.route('/students-list')
 def students_list():
     return jsonify(students)
 
 
-@todo.route('/student/get/<int:id>')
+@app.route('/student/get/<int:id>')
 def student_get_by_id(id):
     for std in students:
         if std['id'] == id:
@@ -38,7 +38,7 @@ def student_get_by_id(id):
 
     return "id not found"
 
-@todo.route('/students-list/restapi')
+@app.route('/students-list/restapi')
 def students_list_restapi():
   import requests
   url = "https://rest-api-w214.onrender.com/students-list"
@@ -46,7 +46,7 @@ def students_list_restapi():
 \
 
 if __name__ == '__main__':
-    todo.run(
+    app.run(
         
         debug=True
     )
